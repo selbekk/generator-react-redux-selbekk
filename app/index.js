@@ -24,6 +24,7 @@ module.exports = generators.Base.extend({
         );
         process.chdir(path.join(process.cwd(), this.name));
         this.spawnCommand('yarn');
+        this.spawnCommand('git', ['init']);
     },
 
     writing() {
@@ -55,9 +56,5 @@ module.exports = generators.Base.extend({
             this.destinationPath(path.join(this.name, 'README.md')),
             { name: this.name }
         );
-    },
-
-    end() {
-        this.log('Such dope! Now run npm start to start a dev server.');
     }
 });
