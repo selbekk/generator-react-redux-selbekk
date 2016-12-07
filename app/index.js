@@ -20,7 +20,7 @@ module.exports = generators.Base.extend({
 
     install: function() {
         this.log(
-            `Dope! ${answers.name} is created. Now it's time to install
+            `Dope! ${this.name} is created. Now it's time to install
             dependencies!`
         );
         this.spawnCommand('yarn');
