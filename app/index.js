@@ -15,20 +15,26 @@ module.exports = generators.Base.extend({
         return this.prompt(prompts)
             .then((answers) => {
                 this.name = answers.name;
-                this.log(`Dope! ${answers.name} is created. Go code!`);
-                this.log('🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳');
             });
     },
 
     install: function() {
+        this.log(
+            `Dope! ${answers.name} is created. Now it's time to install
+            dependencies!`
+        );
         this.spawnCommand('yarn');
     },
 
     writing: function() {
-        this.fs.copy(this.templatePath('**'), path.join(this.destinationPath()));
+        mkdirp(this.name);
+        this.fs.copy(
+            this.templatePath('**'),
+            path.join(this.destinationPath(), this.name)
+        );
         this.fs.copyTpl(
             this.templatePath('package.json'),
-            this.destinationPath('package.json'),
+            this.destinationPath(path.join(this.name, 'package.json')),
             { name: this.name }
         );
     }
