@@ -23,7 +23,7 @@ module.exports = generators.Base.extend({
             `Dope! ${this.name} is created. Now it's time to install
             dependencies!`
         );
-        process.cwd(this.name);
+        process.chdir(path.join(process.cwd(), this.name);
         this.spawnCommand('yarn');
     },
 
