@@ -3,7 +3,7 @@ const generators = require('yeoman-generator');
 const mkdirp = require('mkdirp');
 
 module.exports = generators.Base.extend({
-    prompting: function() {
+    prompting() {
         const prompts = [
             {
                 type: 'input',
@@ -18,16 +18,16 @@ module.exports = generators.Base.extend({
             });
     },
 
-    install: function() {
+    install() {
         this.log(
             `Dope! ${this.name} is created. Now it's time to install
             dependencies!`
         );
-        this.spawnCommand(`cd ${this.name}`);
+        process.cwd(this.name);
         this.spawnCommand('yarn');
     },
 
-    writing: function() {
+    writing() {
         mkdirp(this.name);
         this.fs.copy(
             this.templatePath('**'),
@@ -42,5 +42,9 @@ module.exports = generators.Base.extend({
             this.destinationPath(path.join(this.name, 'package.json')),
             { name: this.name }
         );
+    }
+
+    end() {
+        this.log('Such dope! Now run npm start to start a dev server.');
     }
 });
