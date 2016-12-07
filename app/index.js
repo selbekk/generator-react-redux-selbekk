@@ -23,6 +23,7 @@ module.exports = generators.Base.extend({
             `Dope! ${this.name} is created. Now it's time to install
             dependencies!`
         );
+        this.spawnCommand(`cd ${this.name}`);
         this.spawnCommand('yarn');
     },
 
@@ -30,6 +31,10 @@ module.exports = generators.Base.extend({
         mkdirp(this.name);
         this.fs.copy(
             this.templatePath('**'),
+            path.join(this.destinationPath(), this.name)
+        );
+        this.fs.copy(
+            this.templatePath('.*'),
             path.join(this.destinationPath(), this.name)
         );
         this.fs.copyTpl(
