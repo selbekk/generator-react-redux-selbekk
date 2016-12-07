@@ -20,26 +20,39 @@ module.exports = generators.Base.extend({
 
     install() {
         this.log(
-            `Dope! ${this.name} is created. Now it's time to install
-            dependencies!`
+            `Dope! ${this.name} is created. Now it's time to install dependencies!`
         );
         process.chdir(path.join(process.cwd(), this.name));
         this.spawnCommand('yarn');
     },
 
     writing() {
+        // Create the directory
         mkdirp(this.name);
+
+        // Copy all of the files
         this.fs.copy(
             this.templatePath('**'),
             path.join(this.destinationPath(), this.name)
         );
+
+        // Copy all of the dotfiles
         this.fs.copy(
             this.templatePath('.*'),
             path.join(this.destinationPath(), this.name)
         );
+
+        // Copy the package.json file
         this.fs.copyTpl(
             this.templatePath('package.json'),
             this.destinationPath(path.join(this.name, 'package.json')),
+            { name: this.name }
+        );
+
+        // Copy the readme file
+        this.fs.copyTpl(
+            this.templatePath('README.md'),
+            this.destinationPath(path.join(this.name, 'README.md')),
             { name: this.name }
         );
     },
