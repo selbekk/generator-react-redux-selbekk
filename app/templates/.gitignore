@@ -1,0 +1,11 @@
+# Built files
+build/*
+
+# Dependencies
+node_modules
+
+# Logs
+*.log
+
+# OS specifics
+.DS_Store
