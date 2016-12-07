@@ -42,7 +42,7 @@ module.exports = generators.Base.extend({
             this.destinationPath(path.join(this.name, 'package.json')),
             { name: this.name }
         );
-    }
+    },
 
     end() {
         this.log('Such dope! Now run npm start to start a dev server.');
