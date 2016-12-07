@@ -29,7 +29,7 @@ module.exports = generators.Base.extend({
         this.fs.copyTpl(
             this.templatePath('package.json'),
             this.destinationPath('package.json'),
-            { name: this.name },
-        )
+            { name: this.name }
+        );
     }
 });
