@@ -11,6 +11,10 @@
     "react",
     "redux"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/selbekk/generator-react-redux-selbekk"
+  },
   "dependencies": {
     "yeoman-generator": "^0.24.1"
   }
