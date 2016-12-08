@@ -10,17 +10,25 @@ module.exports = generators.Base.extend({
                 name: 'name',
                 message: 'What\'s your project name?',
                 default: this.appname,
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'Sweet! What is your github handle?',
+                default: this.appname,
             }
         ];
         return this.prompt(prompts)
             .then((answers) => {
                 this.name = answers.name;
+                this.github = answers.github;
             });
     },
 
     install() {
         this.log(
-            `Dope! ${this.name} is created. Now it's time to install dependencies!`
+            `Dope! Now we've created "${this.name}" for ya. Now it's time to ` +
+            `install dependencies!`
         );
         process.chdir(path.join(process.cwd(), this.name));
         this.spawnCommand('yarn');
@@ -47,7 +55,7 @@ module.exports = generators.Base.extend({
         this.fs.copyTpl(
             this.templatePath('package.json'),
             this.destinationPath(path.join(this.name, 'package.json')),
-            { name: this.name }
+            { name: this.name,  }
         );
 
         // Copy the readme file
