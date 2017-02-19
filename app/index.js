@@ -1,8 +1,8 @@
 const path = require('path');
-const generators = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 const mkdirp = require('mkdirp');
 
-module.exports = generators.Base.extend({
+module.exports = class extends Generator {
     prompting() {
         const prompts = [
             {
@@ -14,8 +14,9 @@ module.exports = generators.Base.extend({
             {
                 type: 'input',
                 name: 'github',
-                message: 'Sweet! What is your github handle?',
+                message: 'Sweet! What is your github username?',
                 default: this.appname,
+                store: true,
             }
         ];
         return this.prompt(prompts)
@@ -23,7 +24,7 @@ module.exports = generators.Base.extend({
                 this.name = answers.name;
                 this.github = answers.github;
             });
-    },
+    }
 
     install() {
         this.log(
@@ -33,7 +34,7 @@ module.exports = generators.Base.extend({
         process.chdir(path.join(process.cwd(), this.name));
         this.spawnCommand('yarn');
         this.spawnCommand('git', ['init']);
-    },
+    }
 
     writing() {
         // Create the directory
