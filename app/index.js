@@ -2,7 +2,7 @@ const path = require('path');
 const Generator = require('yeoman-generator');
 const mkdirp = require('mkdirp');
 
-module.exports = class extends Generator {
+module.exports = class ReactReduxGenerator extends Generator {
     prompting() {
         const prompts = [
             {
