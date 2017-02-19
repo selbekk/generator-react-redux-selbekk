@@ -56,7 +56,7 @@ module.exports = class ReactReduxGenerator extends Generator {
         this.fs.copyTpl(
             this.templatePath('package.json'),
             this.destinationPath(path.join(this.name, 'package.json')),
-            { name: this.name,  }
+            { name: this.name, github: this.github }
         );
 
         // Copy the readme file
