@@ -2,7 +2,7 @@ const path = require('path');
 const Generator = require('yeoman-generator');
 const mkdirp = require('mkdirp');
 
-module.exports = class ReactReduxGenerator extends Generator {
+module.exports = Generator.extend({
     prompting() {
         const prompts = [
             {
@@ -24,7 +24,7 @@ module.exports = class ReactReduxGenerator extends Generator {
                 this.name = answers.name;
                 this.github = answers.github;
             });
-    }
+    },
 
     install() {
         this.log(
@@ -34,7 +34,7 @@ module.exports = class ReactReduxGenerator extends Generator {
         process.chdir(path.join(process.cwd(), this.name));
         this.spawnCommand('yarn');
         this.spawnCommand('git', ['init']);
-    }
+    },
 
     writing() {
         // Create the directory
@@ -65,5 +65,5 @@ module.exports = class ReactReduxGenerator extends Generator {
             this.destinationPath(path.join(this.name, 'README.md')),
             { name: this.name }
         );
-    }
-};
+    },
+});
