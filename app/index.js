@@ -1,8 +1,8 @@
 const path = require('path');
-const Generator = require('yeoman-generator');
+const generators = require('yeoman-generator');
 const mkdirp = require('mkdirp');
 
-module.exports = Generator.extend({
+module.exports = generators.Base.extend({
     prompting() {
         const prompts = [
             {
