@@ -66,4 +66,4 @@ module.exports = class extends Generator {
             { name: this.name }
         );
     }
-});
+};
